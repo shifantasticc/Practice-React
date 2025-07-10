@@ -1,0 +1,8 @@
+.comment {
+  /* border: 1px solid #68757a; */
+  background-color: #77868b;
+  box-shadow: inset 0 -3em 3em #4e575b, 0.5em 0.5em 2em rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
