@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+body {
+  background-image: url('/sky.jpg'); /* replace with your image path */
+  background-size: cover; /* makes it cover entire area */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

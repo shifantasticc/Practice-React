@@ -1,13 +1,13 @@
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { TextField, Button, Box, Typography, Stack } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import './SearchBox.css';
 import { useState } from 'react';
 
 export default function SearchBox({ updateInfo }) {
   let [city, setCity] = useState('');
   let [error, setError] = useState(false);
-  const API_URL = 'https://api.openweathermap.org/data/2.5/weather?';
-  const API_KEY = 'edb69f9c183bd146bbdaf405b381ea5a';
+  const API_URL = API_URL;
+  const API_KEY = API_KEY;
 
   let getWeatherInfo = async () => {
     try {
@@ -48,22 +48,50 @@ export default function SearchBox({ updateInfo }) {
   };
 
   return (
-    <div className="SearchBox">
-      <form action="" onSubmit={handleSubmit}>
-        <TextField
-          id="city"
-          label="City Name"
-          variant="outlined"
-          required
-          value={city}
-          onChange={handleChange}
-        />
-        <br /> <br />
-        <Button variant="contained" type="submit">
-          Search
-        </Button>
+    <Box
+      className="SearchBox"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mt: 4,
+        gap: 1,
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <TextField
+            id="city"
+            label="Enter City Name"
+            variant="outlined"
+            required
+            value={city}
+            onChange={handleChange}
+            sx={{ width: 200 }}
+          />
+          <Button
+            variant="contained"
+            type="submit"
+            endIcon={<SearchIcon />}
+            sx={{ height: '56px', backgroundColor: '#6da0c7ff' }}
+          >
+            Search
+          </Button>
+        </Stack>
       </form>
-      {error && <p style={{ color: 'red' }}>No such place exists!</p>}
-    </div>
+
+      {error && (
+        <Typography
+          sx={{
+            color: '#ffffffff',
+            backgroundColor: '#d90505ff',
+            width: '13rem',
+          }}
+          mt={2}
+        >
+          No such place exists!
+        </Typography>
+      )}
+    </Box>
   );
 }

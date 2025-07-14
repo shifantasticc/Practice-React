@@ -1,10 +1,15 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  Stack,
+} from '@mui/material';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import SunnyIcon from '@mui/icons-material/Sunny';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import './InfoBox.css';
 
 export default function InfoBox({ info }) {
@@ -15,49 +20,61 @@ export default function InfoBox({ info }) {
   const RAIN_URL =
     'https://img.freepik.com/free-photo/weather-effects-composition_23-2149853295.jpg';
 
+  const getWeatherIcon = () => {
+    if (info.humidity > 80) return <ThunderstormIcon sx={{ color: '#4c6a78ff' }} />;
+    if (info.temp > 30) return <WbSunnyIcon sx={{ color: '#fdb446ff' }} />;
+    return <AcUnitIcon sx={{ color: '#79b2cdff' }} />;
+  };
+
+  const backgroundImg =
+    info.humidity > 80 ? RAIN_URL : info.temp > 30 ? HOT_URL : COLD_URL;
+
   return (
-    <div className="InfoBox">
-      <div className="cardContainer">
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
-            sx={{ height: 140 }}
-            image={
-              info.humidity > 80
-                ? RAIN_URL
-                : info.temp > 30
-                ? HOT_URL
-                : COLD_URL
-            }
-            title="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {info.city}{' '}
-              {info.humidity > 80 ? (
-                <ThunderstormIcon />
-              ) : info.temp > 30 ? (
-                <SunnyIcon />
-              ) : (
-                <AcUnitIcon />
-              )}
+    <Box className="InfoBox" sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+      <Card
+        sx={{
+          width: 350,
+          borderRadius: 2,
+          boxShadow: 6,
+          transition: 'transform 0.3s',
+          '&:hover': {
+            transform: 'scale(1.03)',
+          },
+        }}
+      >
+        <CardMedia
+          component="img"
+          height="180"
+          image={backgroundImg}
+          alt="Weather"
+        />
+        <CardContent>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Typography variant="h5" fontWeight="bold">
+              {info.city}
             </Typography>
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.secondary' }}
-              component={'span'}
-            >
-              <p>Temperature = {info.temp}&deg;C</p>
-              <p>Humidity = {info.humidity}</p>
-              <p>Min Temp = {info.tempMin}&deg;C</p>
-              <p>Max Temp = {info.tempMax}&deg;C</p>
-              <p>
-                the weather can be described as <i>{info.weather}</i> & Feels
-                Like = {info.feelsLike}&deg;C
-              </p>
+            {getWeatherIcon()}
+          </Stack>
+
+          <Box mt={2} sx={{ color: '#5e5e5fff' }} textAlign={'left'}>
+            <Typography variant="body1">
+              🌡️ Temperature: {info.temp}&deg;C
             </Typography>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+            <Typography variant="body1">
+              💧 Humidity: {info.humidity}%
+            </Typography>
+            <Typography variant="body1">
+              🔻 Min Temp: {info.tempMin}&deg;C
+            </Typography>
+            <Typography variant="body1">
+              🔺 Max Temp: {info.tempMax}&deg;C
+            </Typography>
+            <Typography variant="body1" mt={1}>
+              <i>{info.weather}</i> — Feels Like: {info.feelsLike}&deg;C
+            </Typography>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
