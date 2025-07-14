@@ -6,8 +6,8 @@
 }
 
 body {
-  background-image: url('/sky.jpg'); /* replace with your image path */
-  background-size: cover; /* makes it cover entire area */
+  background-image: url('/sky.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
