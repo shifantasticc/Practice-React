@@ -1,0 +1,27 @@
+.lotteryGame {
+    background-color: rgb(17, 78, 100);
+    height: 60vh;
+    width: 28rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lotteryNum {
+    background-color: rgb(18, 176, 176);
+    color: black;
+    height: 8rem;
+    width: 15em;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.winMsg p {
+    font-size: 1.3rem;
+    color: rgba(239, 239, 80, 0.977);
+    text-decoration: underline rgb(212, 3, 3);
+}
