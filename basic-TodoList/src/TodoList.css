@@ -1,0 +1,51 @@
+.TodoList {
+  background-color: rgb(74, 22, 122);
+  border-radius: 1rem;
+  box-shadow: 5px 5px 20px rgb(73, 30, 113),
+    10px 10px 20px rgb(91, 27, 151) inset;
+  height: 85vh;
+  width: 28rem;
+  overflow-y: scroll;
+}
+
+.TodoList::-webkit-scrollbar {
+  display: none;
+}
+
+.userInput {
+  background-color: hsl(269, 85%, 13%);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  margin-top: 15rem;
+  position: sticky;
+  bottom: 0;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInput input {
+  font-size: 1.2rem;
+  background-color: rgb(194, 170, 217);
+}
+
+.taskList {
+  margin-bottom: 1rem;
+}
+
+.taskList button {
+  background-color: hsl(269, 85%, 13%);
+}
+
+.taskList span,
+button {
+  margin-right: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+}
+
+h1 {
+  font-style: italic;
+  text-decoration: underline;
+}
